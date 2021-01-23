@@ -45,3 +45,74 @@ export default User;
 
 
 ```
+
+## State and Lifecycle
+
+State and component life cycle.
+
+- constructor()
+- componentDidMount()
+- componentWillUnmount()
+
+## Conditional rendering and iterating list
+
+```javascript
+class UserList extends Component {
+  constructor() {
+    super();
+    this.state = {
+      users: [
+        {
+          name: "Khadga Shrestha",
+          job: "Software Developer",
+          active: true,
+        },
+        {
+          name: "Nisma shrestha",
+          job: "Business Analyst",
+          active: false,
+        },
+      ],
+    };
+  }
+
+  handleClick = () => {
+    console.log("Clicking...");
+  };
+
+  render() {
+    const { users } = this.state;
+    return (
+      <div>
+        {users.map((user, i) => (
+          <User key={i} user={user} />
+        ))}
+      </div>
+    );
+  }
+}
+
+export default UserList;
+```
+
+```javascript
+function User(props) {
+  return (
+    <div
+      style={{
+        backgroundColor: "#f0efeb",
+        padding: "10px",
+        marginTop: "5px",
+        borderRadius: "4px",
+      }}
+    >
+      <p>{props.user.name}</p>
+      <p>{props.user.job}</p>
+      {props.user.active && (
+        <button onClick={props.onClick}>Connect with this user</button>
+      )}
+    </div>
+  );
+}
+export default User;
+```

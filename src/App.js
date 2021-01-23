@@ -1,3 +1,4 @@
+import Clock from "./Clock";
 import UserList from "./UserList";
 
 function App() {
