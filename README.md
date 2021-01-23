@@ -1,6 +1,6 @@
-#Learning React JS
+# Learning React JS
 
-##Components
+## Components
 
 - Functional component
   in this type of component we have to define a function and return the content.
@@ -25,7 +25,7 @@
   export default UserList;
   ```
 
-##Passing data to the component using props.
+## Passing data to the component using props.
 
 We can pass the data to the component using the props.
 
