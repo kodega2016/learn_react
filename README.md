@@ -116,3 +116,143 @@ function User(props) {
 }
 export default User;
 ```
+
+## Forms
+
+in react form data can be handled as
+
+```javascript
+class Form extends Component {
+  constructor() {
+    super();
+    this.state = {
+      name: "",
+      job: "",
+      status: "",
+    };
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(this.state);
+  };
+
+  render() {
+    return (
+      <div className="card">
+        <div className="card-body">
+          <div className="mb-3">
+            <label className="form-label">Full name</label>
+            <input
+              className="form-control"
+              placeholder="Enter full name"
+              name="name"
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Job</label>
+            <input
+              className="form-control"
+              placeholder="Enter job"
+              name="job"
+              onChange={this.handleChange}
+            />
+          </div>
+          <select
+            name="status"
+            onChange={this.handleChange}
+            className="form-control"
+          >
+            <option value="grapefruit">Grapefruit</option>
+            <option value="lime">Lime</option>
+            <option value="coconut">Coconut</option>
+            <option value="mango">Mango</option>
+          </select>
+          <br />
+          <button
+            onClick={this.handleSubmit}
+            className="btn btn-outline-success"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default Form;
+```
+
+Here we have to give the name to the input field and change the value on change event.
+
+## Context Api in react js
+
+Context provides a way to pass data through the component tree without having to pass props down manually at every level
+
+First of all we have to define context(ThemeContext) as
+
+```javascript
+import React from "react";
+
+const ThemeContext = React.createContext({ theme: "light" });
+
+export default ThemeContext;
+```
+
+Pass the context data to the descendent widgets using Provider as
+
+```javascript
+import ContextBtn from "./ContextBtn";
+import ThemeContext from "./themeContext";
+
+class ContextExample extends Component {
+  render() {
+    return (
+      <div className="card mt-2">
+        <div className="card-body">
+          Learning Context API in react js
+          <ThemeContext.Provider value={{ theme: "light" }}>
+            <ContextBtn />
+          </ThemeContext.Provider>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default ContextExample;
+```
+
+Access the data in using context
+
+```javascript
+import React, { Component } from "react";
+import ThemeContext from "./themeContext";
+
+class ContextBtn extends Component {
+  static contextType = ThemeContext;
+
+  constructor() {
+    super();
+    console.log(this.context);
+  }
+
+  componentDidMount() {
+    console.log(this.context);
+  }
+
+  render() {
+    // console.log(this.context);
+    return <div>Current theme is: {this.context.theme}</div>;
+  }
+}
+export default ContextBtn;
+```

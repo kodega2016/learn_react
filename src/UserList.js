@@ -12,7 +12,7 @@ class UserList extends Component {
           active: true,
         },
         {
-          name: "Nisma shrestha",
+          name: "Nishuka shrestha",
           job: "Business Analyst",
           active: false,
         },
